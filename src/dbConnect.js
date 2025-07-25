@@ -16,4 +16,4 @@ try {
     console.log(erro);
 }
 
-export {documentosColecao};
+export { documentosColecao };
