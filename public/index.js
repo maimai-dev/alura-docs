@@ -7,6 +7,7 @@ const inputDocumento = document.getElementById("input-documento");
 form.addEventListener("submit", (evento) => {
     evento.preventDefault();
     emitirAdicionarDocumento(inputDocumento.value);
+    inputDocumento.value = "";
 });
 
 function inserirLinkDocumento(nomeDocumento){
@@ -14,10 +15,17 @@ function inserirLinkDocumento(nomeDocumento){
     <a
         href="documento.html?nome=${nomeDocumento}" 
         class="list-group-item list-group-item-action"
+        id="documento-${nomeDocumento}"
     >
         ${nomeDocumento}
       </a>
     `
 };
 
-export {inserirLinkDocumento};
+function removerLinkDocumento (nomeDocumento){
+    const documento = document.getElementById(`documento-${nomeDocumento}`);
+
+    listaDocumentos.removeChild(documento);
+}
+
+export {inserirLinkDocumento, removerLinkDocumento};

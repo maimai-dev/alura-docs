@@ -1,4 +1,4 @@
-import { atualizaTextoEditor } from "./documento.js";
+import { alertarERedirecionar, atualizaTextoEditor } from "./documento.js";
 
 const socket = io();
 
@@ -20,4 +20,12 @@ socket.on('disconnect', (motivo) => {
     console.log(`Servidor desconectado! Motivo: ${motivo}`);
 });
 
-export { emitirTextoEditor, selecionarDocumento };
+function emitirExcluirDocumento (nome){
+    socket.emit("excluir_documento", nome);
+}
+
+socket.on("excluir_documento_sucesso", (nome) => {
+    alertarERedirecionar(nome);
+});
+
+export { emitirTextoEditor, selecionarDocumento, emitirExcluirDocumento };
